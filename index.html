@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Ultra Sonsuz Absürt Sözleşme</title>
+<style>
+body { font-family: Arial, sans-serif; padding:20px 50px; line-height:1.6; background:#fdf6e3; color:#333; }
+h1 { text-align:center; font-size:50px; margin-bottom:40px; }
+h2 { font-size:30px; margin-top:40px; margin-bottom:20px; color:#d33682; }
+ul { margin-top:5px; margin-bottom:20px; padding-left:20px; }
+li { margin-bottom:10px; }
+strong { color:#b58900; }
+</style>
+</head>
+<body>
+
+<h1>ULTRA SONSUZ ABSÜRT SÖZLEŞME</h1>
+<div id="sözleşme"></div>
+
+<script>
+let maddeSayisi = 1;
+const container = document.getElementById("sözleşme");
+
+// Daha büyük havuzlar
+const nesneler = ["Patates","51.bölge", "Uzaylı", "Kediler", "Adminin kahvesi", "Sonsuz sandalyeler", "Baykuşlar", "Hologram unicorn"];
+const eylemler = ["dans etmelidir", "zıplamalıdır", "göz kırpmalıdır", "sıçmalıdır","sessizce mırıldanmalıdır", "gizlice şarkı söylemelidir"];
+const zamanlar = ["03:17'de", "haftada bir", "günde üç kez", "bir kere her mevsim", "rastgele anlarda", "Ay tutulurken"];
+const eklemeler = ["ve kimse anlamamalıdır", "ama görünmez olmalıdır", "ve patatesleri selamlamalıdır", "fakat sessizlik içinde yapmalıdır"];
+
+// Rastgele benzersiz kural üreten fonksiyon
+function rastgeleKural() {
+    let kural = "";
+    const cümleSayisi = 2 + Math.floor(Math.random()*3); // 2-4 cümle
+    for(let i=0;i<cümleSayisi;i++){
+        const nesne = nesneler[Math.floor(Math.random()*nesneler.length)];
+        const eylem = eylemler[Math.floor(Math.random()*eylemler.length)];
+        const zaman = zamanlar[Math.floor(Math.random()*zamanlar.length)];
+        const ek = eklemeler[Math.floor(Math.random()*eklemeler.length)];
+        kural += `${nesne} ${zaman} ${eylem} ${ek}. `;
+    }
+    return kural;
+}
+
+// Başlangıçta 10 madde
+for(let i=0;i<10;i++){
+    const h2 = document.createElement("h2");
+    h2.textContent = `Madde ${maddeSayisi}`;
+    container.appendChild(h2);
+
+    const ul = document.createElement("ul");
+    const li = document.createElement("li");
+    li.textContent = rastgeleKural();
+    ul.appendChild(li);
+    container.appendChild(ul);
+
+    maddeSayisi++;
+}
+
+// Sonsuz scroll
+window.addEventListener('scroll', () => {
+    if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10){
+        for(let i=0;i<5;i++){
+            const h2 = document.createElement("h2");
+            h2.textContent = `Madde ${maddeSayisi}`;
+            container.appendChild(h2);
+
+            const ul = document.createElement("ul");
+            const li = document.createElement("li");
+            li.textContent = rastgeleKural();
+            ul.appendChild(li);
+            container.appendChild(ul);
+
+            maddeSayisi++;
+        }
+    }
+});
+</script>
+
+</body>
+</html>
